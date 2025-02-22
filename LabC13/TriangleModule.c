@@ -6,13 +6,13 @@
 #include "TriangleModule.h"
 
 
-// проверка равенства вещественных чисел
+// РїСЂРѕРІРµСЂРєР° СЂР°РІРµРЅСЃС‚РІР° РІРµС‰РµСЃС‚РІРµРЅРЅС‹С… С‡РёСЃРµР»
 bool equal_float(float a, float b){
 	return (abs(a - b) < EPS);
 }
 
 
-// создание тругольника по координатам вершин
+// СЃРѕР·РґР°РЅРёРµ С‚СЂСѓРіРѕР»СЊРЅРёРєР° РїРѕ РєРѕРѕСЂРґРёРЅР°С‚Р°Рј РІРµСЂС€РёРЅ
 Triangle create_triangle(float ax, float ay, float bx, float by, float cx, float cy){
 	Triangle t;
 	t.ax = ax;
@@ -27,7 +27,7 @@ Triangle create_triangle(float ax, float ay, float bx, float by, float cx, float
 };
 
 
-// смещиение треугольника
+// СЃРјРµС‰РёРµРЅРёРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
 void move_triangle(Triangle* t, float dx, float dy){
 	t->ax += dx;
 	t->ay += dy;
@@ -38,14 +38,14 @@ void move_triangle(Triangle* t, float dx, float dy){
 };
 
 
-// расчет координат ценитроида треугольника
+// СЂР°СЃС‡РµС‚ РєРѕРѕСЂРґРёРЅР°С‚ С†РµРЅРёС‚СЂРѕРёРґР° С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
 void center(const Triangle* t, float* resx, float* resy){
 	*resx = (float)(t->ax + t->bx + t->cx)/3;
 	*resy = (float)(t->ay + t->by + t->cy)/3;
 };
 
 
-// поворот треугольника на заданный угол в градусах вокруг центроида
+// РїРѕРІРѕСЂРѕС‚ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° РЅР° Р·Р°РґР°РЅРЅС‹Р№ СѓРіРѕР» РІ РіСЂР°РґСѓСЃР°С… РІРѕРєСЂСѓРі С†РµРЅС‚СЂРѕРёРґР°
 void rotate(Triangle* t, float alpha_deg){
 	float center_x, center_y;
 	center(t, &center_x, &center_y);
@@ -68,7 +68,7 @@ void rotate(Triangle* t, float alpha_deg){
 };
 
 
-// масштабирование треугольника на заданный коэффициент
+// РјР°СЃС€С‚Р°Р±РёСЂРѕРІР°РЅРёРµ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° РЅР° Р·Р°РґР°РЅРЅС‹Р№ РєРѕСЌС„С„РёС†РёРµРЅС‚
 void resize(Triangle* t, float k){
 	t->ax *= k;
 	t->ay *= k;
@@ -79,7 +79,7 @@ void resize(Triangle* t, float k){
 };
 
 
-// создание равностороннего треугольника с центроидом в начале координат
+// СЃРѕР·РґР°РЅРёРµ СЂР°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРµРіРѕ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° СЃ С†РµРЅС‚СЂРѕРёРґРѕРј РІ РЅР°С‡Р°Р»Рµ РєРѕРѕСЂРґРёРЅР°С‚
 Triangle create_equilateral_triangle(float side){
 	Triangle t; 
 	float ax = -side/2;
@@ -101,7 +101,7 @@ Triangle create_equilateral_triangle(float side){
 };
 
 
-// создание прямоугольного треугольника
+// СЃРѕР·РґР°РЅРёРµ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРѕРіРѕ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР°
 Triangle create_right_triangle(float sidex, float sidey){
 	Triangle t;
 	t.ax = 0;
@@ -115,7 +115,7 @@ Triangle create_right_triangle(float sidex, float sidey){
 };
 
 
-// вывод треугольника в консоль по заданному шаблону
+// РІС‹РІРѕРґ С‚СЂРµСѓРіРѕР»СЊРЅРёРєР° РІ РєРѕРЅСЃРѕР»СЊ РїРѕ Р·Р°РґР°РЅРЅРѕРјСѓ С€Р°Р±Р»РѕРЅСѓ
 void print_triangle(const Triangle* t){
 	float px1, py1, px2, py2, px3, py3;
 	
@@ -189,7 +189,7 @@ void print_triangle(const Triangle* t){
 	
 	printf("\t(%.2f, %.2f)\n", px1, py1);
 	printf("(%.2f, %.2f)\t(%.2f, %.2f)\n", px2, py2,px3, py3);
-	printf("[%s]", t->equilateral? "Равносторонний": "Неравносторонний");
+	printf("[%s]", t->equilateral? "Р Р°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№": "РќРµСЂР°РІРЅРѕСЃС‚РѕСЂРѕРЅРЅРёР№");
 	printf("\n\n");
 }
 

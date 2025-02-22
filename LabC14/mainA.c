@@ -29,7 +29,7 @@ int* all_last_numbers(char* str, int* len){
     char* temp = malloc(string_len*sizeof(char));
     
     if (temp == NULL) {
-		printf("Ошибка! Недостаточно памяти. \n");
+		printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 		exit(1);
 	};
     
@@ -37,7 +37,7 @@ int* all_last_numbers(char* str, int* len){
 	int* nums = (int*) calloc(count+1, sizeof(int));
 	
 	if (nums == NULL) {
-		printf("Ошибка! Недостаточно памяти. \n");
+		printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 		exit(1);
 	};
 	
@@ -89,14 +89,14 @@ char** short_words(char* str, int k, int* result_len){
     int count = string_len;
     char** result = (char**) calloc((count + 1), sizeof(char*));
     if (result == NULL) {
-    	printf("Ошибка! Недостаточно памяти. \n\n");
+    	printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n\n");
         exit(1);
     };
     int i;
     for (i = 0; i < count; i++){
     	result[i] = (char*) malloc((string_len + 1) * sizeof(char));
     	if (result[i] == NULL) {
-			printf("Ошибка! Недостаточно памяти. \n\n");
+			printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n\n");
 			exit(1);
 		}
     	memset(result[i], '\0', (string_len + 1)*sizeof(char));
@@ -136,13 +136,13 @@ char** words(char* str, int* result_len){
     
     char** result = (char**) calloc((count + 1), sizeof(char*));
     if (result == NULL) {
-    	printf("Ошибка! Недостаточно памяти. \n\n");
+    	printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n\n");
         exit(1);
     };
     for (i = 0; i < count; i++){
     	result[i] = (char*) malloc((string_len + 1) * sizeof(char));
     	if (result[i] == NULL) {
-			printf("Ошибка! Недостаточно памяти. \n\n");
+			printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n\n");
 			exit(1);
 		}
     	memset(result[i], '\0', (string_len + 1)*sizeof(char));
@@ -216,8 +216,8 @@ int main(int argc, char *argv[])
 	
     if (argc < 3)
     {
-    	printf("Неверное количество аргументов!\n\n");
-        printf("Пожалуйста используйте шаблон: <имя_входного_файла> <имя_выходного_файла>\n\n");
+    	printf("РќРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ!\n\n");
+        printf("РџРѕР¶Р°Р»СѓР№СЃС‚Р° РёСЃРїРѕР»СЊР·СѓР№С‚Рµ С€Р°Р±Р»РѕРЅ: <РёРјСЏ_РІС…РѕРґРЅРѕРіРѕ_С„Р°Р№Р»Р°> <РёРјСЏ_РІС‹С…РѕРґРЅРѕРіРѕ_С„Р°Р№Р»Р°>\n\n");
         return 1;
     }
 
@@ -227,14 +227,14 @@ int main(int argc, char *argv[])
     FILE *input_file = fopen(input_filename, "r");
     if (input_file == NULL)
     {
-        printf("Ошибка при открытии входного файла!\n\n");
+        printf("РћС€РёР±РєР° РїСЂРё РѕС‚РєСЂС‹С‚РёРё РІС…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°!\n\n");
         return 1;
     }
 
     FILE *output_file = fopen(output_filename, "w");
     if (output_file == NULL)
     {
-        printf("Ошибка при открытии выходного файла!\n\n");
+        printf("РћС€РёР±РєР° РїСЂРё РѕС‚РєСЂС‹С‚РёРё РІС‹С…РѕРґРЅРѕРіРѕ С„Р°Р№Р»Р°!\n\n");
         fclose(input_file);
         return 1;
     }
@@ -248,7 +248,7 @@ int main(int argc, char *argv[])
         char *start_quote = strchr(line, '"');
         if (start_quote == NULL)
         {
-            fprintf(output_file, "Неверный формат ввода: нет открывающейся кавычки.\n\n");
+            fprintf(output_file, "РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РІРІРѕРґР°: РЅРµС‚ РѕС‚РєСЂС‹РІР°СЋС‰РµР№СЃСЏ РєР°РІС‹С‡РєРё.\n\n");
             continue;
         }
 
@@ -256,7 +256,7 @@ int main(int argc, char *argv[])
         char *end_quote = strchr(start_quote, '"');
         if (end_quote == NULL)
         {
-            fprintf(output_file, "Неверный формат ввода: нет закрывающейся кавычки.\n\n");
+            fprintf(output_file, "РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РІРІРѕРґР°: РЅРµС‚ Р·Р°РєСЂС‹РІР°СЋС‰РµР№СЃСЏ РєР°РІС‹С‡РєРё.\n\n");
             continue;
         }
 
@@ -275,7 +275,7 @@ int main(int argc, char *argv[])
         
         if (num_items < 1)
         {
-            fprintf(output_file, "\"%s\": Неверный формат ввода: отсутствует команда.\n\n", str);
+            fprintf(output_file, "\"%s\": РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚ РІРІРѕРґР°: РѕС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РєРѕРјР°РЅРґР°.\n\n", str);
             free(str);
             continue;
         }
@@ -284,10 +284,10 @@ int main(int argc, char *argv[])
         if(!strcmp(command, "-create")) {
 			int count = 0;
 			int* arr = all_last_numbers(str, &count);
-			fprintf(output_file, "\n\nВ строке \"%s\" \nнайдено %d чисел, завершающих предолжение.\n", str, count);
+			fprintf(output_file, "\n\nР’ СЃС‚СЂРѕРєРµ \"%s\" \nРЅР°Р№РґРµРЅРѕ %d С‡РёСЃРµР», Р·Р°РІРµСЂС€Р°СЋС‰РёС… РїСЂРµРґРѕР»Р¶РµРЅРёРµ.\n", str, count);
 			int i = 0;
 			for (;i < count; i++){
-				fprintf(output_file, "Число номер %d = %d \n", i+1, arr[i]);
+				fprintf(output_file, "Р§РёСЃР»Рѕ РЅРѕРјРµСЂ %d = %d \n", i+1, arr[i]);
 			};
 			fprintf(output_file, "\n");
 			free(arr);
@@ -295,18 +295,18 @@ int main(int argc, char *argv[])
 			
 		} else if (!strcmp(command, "-info")) {
 			if (num_items < 2) {
-                fprintf(output_file, "\"%s\": Ошибка: необходимо указать искомую подстроку.\n\n", str);
+                fprintf(output_file, "\"%s\": РћС€РёР±РєР°: РЅРµРѕР±С…РѕРґРёРјРѕ СѓРєР°Р·Р°С‚СЊ РёСЃРєРѕРјСѓСЋ РїРѕРґСЃС‚СЂРѕРєСѓ.\n\n", str);
                 free(str);
                 continue;
             }
 			char* s = arg;
 			int count = count_substring(str, s);
-			fprintf(output_file, "\n\nВ строке \"%s\" \nзаданное слово \"%s\" встречается в сторке %d раз. \n\n", str, s, count);
+			fprintf(output_file, "\n\nР’ СЃС‚СЂРѕРєРµ \"%s\" \nР·Р°РґР°РЅРЅРѕРµ СЃР»РѕРІРѕ \"%s\" РІСЃС‚СЂРµС‡Р°РµС‚СЃСЏ РІ СЃС‚РѕСЂРєРµ %d СЂР°Р·. \n\n", str, s, count);
 			
 		} else if (!strcmp(command, "-delete")) {
 			int count;			
 			if (num_items < 2) {
-                fprintf(output_file, "\"%s\": Ошибка: необходимо ввести аргумент К.\n\n", str);
+                fprintf(output_file, "\"%s\": РћС€РёР±РєР°: РЅРµРѕР±С…РѕРґРёРјРѕ РІРІРµСЃС‚Рё Р°СЂРіСѓРјРµРЅС‚ Рљ.\n\n", str);
                 free(str);
                 continue;
             }
@@ -314,7 +314,7 @@ int main(int argc, char *argv[])
 			int max_len = atoi(arg);
             if (max_len < 1)
             {
-                fprintf(output_file, "\"%s\": Ошибка: аргумент К должен быть натуральным числом!\n\n", str);
+                fprintf(output_file, "\"%s\": РћС€РёР±РєР°: Р°СЂРіСѓРјРµРЅС‚ Рљ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅР°С‚СѓСЂР°Р»СЊРЅС‹Рј С‡РёСЃР»РѕРј!\n\n", str);
                 free(str);
                 continue;
             }
@@ -322,7 +322,7 @@ int main(int argc, char *argv[])
 			
 			char** words = short_words(str, max_len, &count);
 			int i = 0;
-			fprintf(output_file, "\n\nВ строке \"%s\" \nвсе слова длиннее %d букв были удалены. Резульат:\n", str, max_len);
+			fprintf(output_file, "\n\nР’ СЃС‚СЂРѕРєРµ \"%s\" \nРІСЃРµ СЃР»РѕРІР° РґР»РёРЅРЅРµРµ %d Р±СѓРєРІ Р±С‹Р»Рё СѓРґР°Р»РµРЅС‹. Р РµР·СѓР»СЊР°С‚:\n", str, max_len);
 			for(;i < count; i++){
 				fprintf(output_file, "%s", words[i]);
 				free(words[i]);
@@ -331,7 +331,7 @@ int main(int argc, char *argv[])
 	  		words = NULL;
 	  }
         else
-            fprintf(output_file, "\"%s\": Ошибка! Неизвестная команда: %s\n\n", str, command);
+            fprintf(output_file, "\"%s\": РћС€РёР±РєР°! РќРµРёР·РІРµСЃС‚РЅР°СЏ РєРѕРјР°РЅРґР°: %s\n\n", str, command);
         free(str);
     }
 

@@ -20,14 +20,14 @@ typedef enum {
 
 
 
-// Перечисление для типов продукта
+// РџРµСЂРµС‡РёСЃР»РµРЅРёРµ РґР»СЏ С‚РёРїРѕРІ РїСЂРѕРґСѓРєС‚Р°
 typedef enum {
     CHRISTMAS_TREE_NUM = 1,
     CHRISTMAS_TREE_DECORATION_NUM,
     NEW_YEAR_GIFT_NUM
 } ProductType;
 
-// Структуры для различных параметров
+// РЎС‚СЂСѓРєС‚СѓСЂС‹ РґР»СЏ СЂР°Р·Р»РёС‡РЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ
 struct CHRISTMAS_TREE {
 	float height;
     float weight;
@@ -43,93 +43,93 @@ struct NEW_YEAR_GIFT {
     float price;
 };
 
-// Объединение для различных параметров в зависимости от типа продукта
+// РћР±СЉРµРґРёРЅРµРЅРёРµ РґР»СЏ СЂР°Р·Р»РёС‡РЅС‹С… РїР°СЂР°РјРµС‚СЂРѕРІ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ С‚РёРїР° РїСЂРѕРґСѓРєС‚Р°
 union ProductParameters {
     struct CHRISTMAS_TREE tree;
     struct CHRISTMAS_TREE_DECORATION decoration;
     struct NEW_YEAR_GIFT gift;
 };
 
-// Структура Product (основная структура, элементы которой будут в массиве)
+// РЎС‚СЂСѓРєС‚СѓСЂР° Product (РѕСЃРЅРѕРІРЅР°СЏ СЃС‚СЂСѓРєС‚СѓСЂР°, СЌР»РµРјРµРЅС‚С‹ РєРѕС‚РѕСЂРѕР№ Р±СѓРґСѓС‚ РІ РјР°СЃСЃРёРІРµ)
 typedef struct  {
-    ProductType type;         			// Тип продукта
-    union ProductParameters params; 	// Параметры продукта
-    unsigned int flags : 5;           	// 5 флагов в битовом поле
+    ProductType type;         			// РўРёРї РїСЂРѕРґСѓРєС‚Р°
+    union ProductParameters params; 	// РџР°СЂР°РјРµС‚СЂС‹ РїСЂРѕРґСѓРєС‚Р°
+    unsigned int flags : 5;           	// 5 С„Р»Р°РіРѕРІ РІ Р±РёС‚РѕРІРѕРј РїРѕР»Рµ
 } Product;
 
-// флаги и их значения    	  16 = FLAG5		8 = FLAG4			    	4 = FLAG3				2 = FLAG2			1	= FLAG1	
-//							  популярен 	  хорошие отзывы  			 быстрая доставка	          скидка			товар месяца
+// С„Р»Р°РіРё Рё РёС… Р·РЅР°С‡РµРЅРёСЏ    	  16 = FLAG5		8 = FLAG4			    	4 = FLAG3				2 = FLAG2			1	= FLAG1	
+//							  РїРѕРїСѓР»СЏСЂРµРЅ 	  С…РѕСЂРѕС€РёРµ РѕС‚Р·С‹РІС‹  			 Р±С‹СЃС‚СЂР°СЏ РґРѕСЃС‚Р°РІРєР°	          СЃРєРёРґРєР°			С‚РѕРІР°СЂ РјРµСЃСЏС†Р°
 
 
-// создание продукта заданного типа - возвращается указатель
+// СЃРѕР·РґР°РЅРёРµ РїСЂРѕРґСѓРєС‚Р° Р·Р°РґР°РЅРЅРѕРіРѕ С‚РёРїР° - РІРѕР·РІСЂР°С‰Р°РµС‚СЃСЏ СѓРєР°Р·Р°С‚РµР»СЊ
 Product* create_product(ProductType type)
 {
     Product* product = (Product*) malloc(sizeof(Product));
     if (product == NULL)
     {
-        printf("Недостаточно памяти!\n");
+        printf("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё!\n");
         exit(1);
     }
 
     product->type = type;
     product->flags = 0;
     
-    printf("Ввод данных о продукте: \n");
+    printf("Р’РІРѕРґ РґР°РЅРЅС‹С… Рѕ РїСЂРѕРґСѓРєС‚Рµ: \n");
     switch (type)
     {
     case CHRISTMAS_TREE_NUM:
     	do {
-	        printf("Высота: ");
+	        printf("Р’С‹СЃРѕС‚Р°: ");
 	        scanf("%f", &product->params.tree.height);
-	        printf("Вес: ");
+	        printf("Р’РµСЃ: ");
 	        scanf("%f", &product->params.tree.weight);
 	    }while (product->params.tree.height <= 0 || product->params.tree.weight <= 0);
         break;
 
     case CHRISTMAS_TREE_DECORATION_NUM:
-    	printf("Цвет (не более 25 букв, без пробелов): ");
+    	printf("Р¦РІРµС‚ (РЅРµ Р±РѕР»РµРµ 25 Р±СѓРєРІ, Р±РµР· РїСЂРѕР±РµР»РѕРІ): ");
 	    scanf("%s", &product->params.decoration.color);
     	do {
-	        printf("Цена: ");
+	        printf("Р¦РµРЅР°: ");
 	        scanf("%f", &product->params.decoration.price);
 	    }while (product->params.decoration.price <= 0);
         break;
 
     case NEW_YEAR_GIFT_NUM:
-        printf("Производитель (бренд, не более 50 букв, без пробелов): ");
+        printf("РџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ (Р±СЂРµРЅРґ, РЅРµ Р±РѕР»РµРµ 50 Р±СѓРєРІ, Р±РµР· РїСЂРѕР±РµР»РѕРІ): ");
         scanf("%s", &product->params.gift.brand);
         do{
-	        printf("Цена: ");
+	        printf("Р¦РµРЅР°: ");
 	        scanf("%f", &product->params.gift.price);
         }while (product->params.gift.price <= 0);
         break;
 
     default:
-        printf("Неизвестный тип продукта. Операция отменена. \n");
+        printf("РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїСЂРѕРґСѓРєС‚Р°. РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР°. \n");
         free(product);
         return NULL;
     };
     
     int property = false;
     unsigned int mask = 0;
-    printf("Ввод свойств продукта: \n");
-    printf("Продукт популярен? (0 - нет, 1 - да): ");
+    printf("Р’РІРѕРґ СЃРІРѕР№СЃС‚РІ РїСЂРѕРґСѓРєС‚Р°: \n");
+    printf("РџСЂРѕРґСѓРєС‚ РїРѕРїСѓР»СЏСЂРµРЅ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG5 : mask;
     
-    printf("Продукт имеет хорошие отзывы? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ С…РѕСЂРѕС€РёРµ РѕС‚Р·С‹РІС‹? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG4 : mask;
     
-    printf("Продукт имеет быструю доставку? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ Р±С‹СЃС‚СЂСѓСЋ РґРѕСЃС‚Р°РІРєСѓ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG3 : mask;
     
-    printf("На продукт действует скидка? (0 - нет, 1 - да): ");
+    printf("РќР° РїСЂРѕРґСѓРєС‚ РґРµР№СЃС‚РІСѓРµС‚ СЃРєРёРґРєР°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG2 : mask;
     
-    printf("Продукт является товаром месяца? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ СЏРІР»СЏРµС‚СЃСЏ С‚РѕРІР°СЂРѕРј РјРµСЃСЏС†Р°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG1 : mask;
     
@@ -139,13 +139,13 @@ Product* create_product(ProductType type)
 }
 
 
-// добавление продукта в масссив
+// РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РІ РјР°СЃСЃСЃРёРІ
 void add_product(Product** data, int* size, Product* product)
 {
     *data = (Product*)realloc(*data, (*size + 1) * sizeof(Product));
     if (data == NULL)
     {
-        printf("Недостаточно памяти!\n");
+        printf("РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё!\n");
         exit(1);
     }
 
@@ -154,12 +154,12 @@ void add_product(Product** data, int* size, Product* product)
 }
 
 
-// удаление продукта из масссива
+// СѓРґР°Р»РµРЅРёРµ РїСЂРѕРґСѓРєС‚Р° РёР· РјР°СЃСЃСЃРёРІР°
 void remove_product(Product** data, int* size, const int index)
 {
     if (index < 0 || index >= *size)
     {
-        printf("Неверный индекс!\n");
+        printf("РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ!\n");
         return;
     }
 	int i = index;
@@ -168,74 +168,74 @@ void remove_product(Product** data, int* size, const int index)
 
     *data = (Product*)realloc(*data, (*size - 1) * sizeof(Product));
     (*size)--;
-    printf("Элемент удален из массива. Используйте команду 4 для просмотра.");
+    printf("Р­Р»РµРјРµРЅС‚ СѓРґР°Р»РµРЅ РёР· РјР°СЃСЃРёРІР°. РСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРѕРјР°РЅРґСѓ 4 РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°.");
 }
 
-// обновить данные о продукте в масссиве
+// РѕР±РЅРѕРІРёС‚СЊ РґР°РЅРЅС‹Рµ Рѕ РїСЂРѕРґСѓРєС‚Рµ РІ РјР°СЃСЃСЃРёРІРµ
 void update_product(Product* data, const int size, const int index)
 {
      if (index < 0 || index >= size)
     {
-        printf("Неверный индекс!\n");
+        printf("РќРµРІРµСЂРЅС‹Р№ РёРЅРґРµРєСЃ!\n");
         return;
     }
     
 	Product* cur_product_ptr = &data[index];
-    printf("Ввод данных о продукте: \n");
+    printf("Р’РІРѕРґ РґР°РЅРЅС‹С… Рѕ РїСЂРѕРґСѓРєС‚Рµ: \n");
     switch (cur_product_ptr->type)
     {
     case CHRISTMAS_TREE_NUM:
     	do{
-	        printf("Высота: ");
+	        printf("Р’С‹СЃРѕС‚Р°: ");
 	        scanf("%f", &cur_product_ptr->params.tree.height);
-	        printf("Вес: ");
+	        printf("Р’РµСЃ: ");
 	        scanf("%f", &cur_product_ptr->params.tree.weight);
 	    }while (cur_product_ptr->params.tree.height <= 0 || cur_product_ptr->params.tree.weight <= 0);
         break;
 
     case CHRISTMAS_TREE_DECORATION_NUM:
-    	printf("Цвет (не более 25 букв, без пробелов): ");
+    	printf("Р¦РІРµС‚ (РЅРµ Р±РѕР»РµРµ 25 Р±СѓРєРІ, Р±РµР· РїСЂРѕР±РµР»РѕРІ): ");
         scanf("%s", &cur_product_ptr->params.decoration.color);
 	    do{
-	        printf("Цена: ");
+	        printf("Р¦РµРЅР°: ");
 	        scanf("%f", &cur_product_ptr->params.decoration.price);
 	    }while (cur_product_ptr->params.decoration.price <= 0);
         break;
 
     case NEW_YEAR_GIFT_NUM:
-        printf("Производитель (бренд, не более 50 букв, без пробелов): ");
+        printf("РџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ (Р±СЂРµРЅРґ, РЅРµ Р±РѕР»РµРµ 50 Р±СѓРєРІ, Р±РµР· РїСЂРѕР±РµР»РѕРІ): ");
         scanf("%s", &cur_product_ptr->params.gift.brand);
         do{
-	        printf("Цена: ");
+	        printf("Р¦РµРЅР°: ");
 	        scanf("%f", &cur_product_ptr->params.gift.price);
 	    }while (cur_product_ptr->params.gift.price <= 0);
         break;
 
     default:
-        printf("Неизвестный тип продукта. Операция отменена. \n");
+        printf("РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїСЂРѕРґСѓРєС‚Р°. РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР°. \n");
         return;
     };
     
     int property = false;
     unsigned int mask = 0;
-    printf("Ввод свойств продукта: \n");
-    printf("Продукт популярен? (0 - нет, 1 - да): ");
+    printf("Р’РІРѕРґ СЃРІРѕР№СЃС‚РІ РїСЂРѕРґСѓРєС‚Р°: \n");
+    printf("РџСЂРѕРґСѓРєС‚ РїРѕРїСѓР»СЏСЂРµРЅ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG5 : mask;
     
-    printf("Продукт имеет хорошие отзывы? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ С…РѕСЂРѕС€РёРµ РѕС‚Р·С‹РІС‹? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG4 : mask;
     
-    printf("Продукт имеет быструю доставку? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ Р±С‹СЃС‚СЂСѓСЋ РґРѕСЃС‚Р°РІРєСѓ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG3 : mask;
     
-    printf("На продукт действует скидка? (0 - нет, 1 - да): ");
+    printf("РќР° РїСЂРѕРґСѓРєС‚ РґРµР№СЃС‚РІСѓРµС‚ СЃРєРёРґРєР°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG2 : mask;
     
-    printf("Продукт является товаром месяца? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ СЏРІР»СЏРµС‚СЃСЏ С‚РѕРІР°СЂРѕРј РјРµСЃСЏС†Р°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG1 : mask;
     
@@ -244,7 +244,7 @@ void update_product(Product* data, const int size, const int index)
     
 }
 
-// вывод одного продукта
+// РІС‹РІРѕРґ РѕРґРЅРѕРіРѕ РїСЂРѕРґСѓРєС‚Р°
 void print_product(const Product* product)
 {
 	ProductType type = product->type;
@@ -252,99 +252,99 @@ void print_product(const Product* product)
 	switch (type)
     {
     case CHRISTMAS_TREE_NUM:
-        type_string = "Это новогодняя елка.";
+        type_string = "Р­С‚Рѕ РЅРѕРІРѕРіРѕРґРЅСЏСЏ РµР»РєР°.";
         break;
 
     case CHRISTMAS_TREE_DECORATION_NUM:
-        type_string = "Это елочная игрушка.";
+        type_string = "Р­С‚Рѕ РµР»РѕС‡РЅР°СЏ РёРіСЂСѓС€РєР°.";
         break;
 
     case NEW_YEAR_GIFT_NUM:
-        type_string = "Это новогодний подарок.";
+        type_string = "Р­С‚Рѕ РЅРѕРІРѕРіРѕРґРЅРёР№ РїРѕРґР°СЂРѕРє.";
         break;
 
     default:
-        type_string = "Это неизвестный тип продукта.";
+        type_string = "Р­С‚Рѕ РЅРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїСЂРѕРґСѓРєС‚Р°.";
         return;
     };
 		
-    printf("Тип продукта: %d. %s\n", type, type_string);
+    printf("РўРёРї РїСЂРѕРґСѓРєС‚Р°: %d. %s\n", type, type_string);
 
     switch (type)
     {
     case CHRISTMAS_TREE_NUM:
-        printf("Высота: %.2f \n", product->params.tree.height);
-        printf("Вес: %.2f \n", product->params.tree.weight);
+        printf("Р’С‹СЃРѕС‚Р°: %.2f \n", product->params.tree.height);
+        printf("Р’РµСЃ: %.2f \n", product->params.tree.weight);
         break;
 
     case CHRISTMAS_TREE_DECORATION_NUM:
-        printf("Цвет: %s \n", product->params.decoration.color);
-        printf("Цена: %.2f \n", product->params.decoration.price);
+        printf("Р¦РІРµС‚: %s \n", product->params.decoration.color);
+        printf("Р¦РµРЅР°: %.2f \n", product->params.decoration.price);
         break;
 
     case NEW_YEAR_GIFT_NUM:
-        printf("Производитель (бренд): %s \n", product->params.gift.brand);
-        printf("Цена: %.2f \n", product->params.gift.price);
+        printf("РџСЂРѕРёР·РІРѕРґРёС‚РµР»СЊ (Р±СЂРµРЅРґ): %s \n", product->params.gift.brand);
+        printf("Р¦РµРЅР°: %.2f \n", product->params.gift.price);
         break;
 
     default:
-        printf("Неизвестный тип продукта. Операция отменена. \n");
+        printf("РќРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї РїСЂРѕРґСѓРєС‚Р°. РћРїРµСЂР°С†РёСЏ РѕС‚РјРµРЅРµРЅР°. \n");
         return;
     };
 
-    printf("Особые свойства продукта. \n");
+    printf("РћСЃРѕР±С‹Рµ СЃРІРѕР№СЃС‚РІР° РїСЂРѕРґСѓРєС‚Р°. \n");
     if (product->flags & FLAG5)
-        printf("\tТовар популярен.\n");
+        printf("\tРўРѕРІР°СЂ РїРѕРїСѓР»СЏСЂРµРЅ.\n");
     if (product->flags & FLAG4)
-        printf("\tТовар имеет хорошие отзывы.\n");
+        printf("\tРўРѕРІР°СЂ РёРјРµРµС‚ С…РѕСЂРѕС€РёРµ РѕС‚Р·С‹РІС‹.\n");
     if (product->flags & FLAG3)
-        printf("\tТовар имеет быструю доставку.\n");
+        printf("\tРўРѕРІР°СЂ РёРјРµРµС‚ Р±С‹СЃС‚СЂСѓСЋ РґРѕСЃС‚Р°РІРєСѓ.\n");
     if (product->flags & FLAG2)
-        printf("\tНа товар действует скидка.\n");
+        printf("\tРќР° С‚РѕРІР°СЂ РґРµР№СЃС‚РІСѓРµС‚ СЃРєРёРґРєР°.\n");
     if (product->flags & FLAG1)
-        printf("\tЭто товар месяца.\n");
+        printf("\tР­С‚Рѕ С‚РѕРІР°СЂ РјРµСЃСЏС†Р°.\n");
 }
 
 
-// вывод всех элементов массива
+// РІС‹РІРѕРґ РІСЃРµС… СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР°
 void print_all_products(const Product* data, const int size)
 {
-    printf("Список всех продуктов:\n");
+    printf("РЎРїРёСЃРѕРє РІСЃРµС… РїСЂРѕРґСѓРєС‚РѕРІ:\n");
     int i = 0;
     for (; i < size; i++)
     {
-        printf("Продукт номер: %d\n", i + 1);
+        printf("РџСЂРѕРґСѓРєС‚ РЅРѕРјРµСЂ: %d\n", i + 1);
         print_product(data+i);
         printf("\n\n");
     }
 }
 
 
-// вывод элементов массива с заданными свойствами (ввод маски происходит в самой функции)
+// РІС‹РІРѕРґ СЌР»РµРјРµРЅС‚РѕРІ РјР°СЃСЃРёРІР° СЃ Р·Р°РґР°РЅРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё (РІРІРѕРґ РјР°СЃРєРё РїСЂРѕРёСЃС…РѕРґРёС‚ РІ СЃР°РјРѕР№ С„СѓРЅРєС†РёРё)
 void print_products_by_mask(const Product* data, const int size)
 {
-    printf("Для вывода продуктов по свойствам необходимо составтить маску.\nОтветьте на следующие вопросы:\n");
+    printf("Р”Р»СЏ РІС‹РІРѕРґР° РїСЂРѕРґСѓРєС‚РѕРІ РїРѕ СЃРІРѕР№СЃС‚РІР°Рј РЅРµРѕР±С…РѕРґРёРјРѕ СЃРѕСЃС‚Р°РІС‚РёС‚СЊ РјР°СЃРєСѓ.\nРћС‚РІРµС‚СЊС‚Рµ РЅР° СЃР»РµРґСѓСЋС‰РёРµ РІРѕРїСЂРѕСЃС‹:\n");
     
     int property = 0;
     unsigned int mask = 0;
-    printf("Ввод свойств продукта: \n");
-    printf("Продукт популярен? (0 - нет, 1 - да): ");
+    printf("Р’РІРѕРґ СЃРІРѕР№СЃС‚РІ РїСЂРѕРґСѓРєС‚Р°: \n");
+    printf("РџСЂРѕРґСѓРєС‚ РїРѕРїСѓР»СЏСЂРµРЅ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG5 : mask;
     
-    printf("Продукт имеет хорошие отзывы? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ С…РѕСЂРѕС€РёРµ РѕС‚Р·С‹РІС‹? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG4 : mask;
     
-    printf("Продукт имеет быструю доставку? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ РёРјРµРµС‚ Р±С‹СЃС‚СЂСѓСЋ РґРѕСЃС‚Р°РІРєСѓ? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG3 : mask;
     
-    printf("На продукт действует скидка? (0 - нет, 1 - да): ");
+    printf("РќР° РїСЂРѕРґСѓРєС‚ РґРµР№СЃС‚РІСѓРµС‚ СЃРєРёРґРєР°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG2 : mask;
     
-    printf("Продукт является товаром месяца? (0 - нет, 1 - да): ");
+    printf("РџСЂРѕРґСѓРєС‚ СЏРІР»СЏРµС‚СЃСЏ С‚РѕРІР°СЂРѕРј РјРµСЃСЏС†Р°? (0 - РЅРµС‚, 1 - РґР°): ");
     scanf("%d", &property);
     mask = property ? mask|FLAG1 : mask;
     
@@ -353,7 +353,7 @@ void print_products_by_mask(const Product* data, const int size)
     {
         if ((data[i].flags & mask) == mask)
         {
-            printf("Продукт номер: %d\n", i + 1);
+            printf("РџСЂРѕРґСѓРєС‚ РЅРѕРјРµСЂ: %d\n", i + 1);
         	print_product(&data[i]);
         	printf("\n\n");
         }
@@ -363,49 +363,49 @@ void print_products_by_mask(const Product* data, const int size)
 
 
 int main() {
-	system("color F0");  	// белый цвет консоли
-	system("chcp 1251");	// кодовая страница русского языка
+	system("color F0");  	// Р±РµР»С‹Р№ С†РІРµС‚ РєРѕРЅСЃРѕР»Рё
+	system("chcp 1251");	// РєРѕРґРѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р° СЂСѓСЃСЃРєРѕРіРѕ СЏР·С‹РєР°
 	
-	// объявление переменных
+	// РѕР±СЉСЏРІР»РµРЅРёРµ РїРµСЂРµРјРµРЅРЅС‹С…
     Product* products = NULL;
     int size = 0;
 	int command;
 	int type;
 	int index;
 
-    while (true) // основной цикл программы для ввода команд пользователя
+    while (true) // РѕСЃРЅРѕРІРЅРѕР№ С†РёРєР» РїСЂРѕРіСЂР°РјРјС‹ РґР»СЏ РІРІРѕРґР° РєРѕРјР°РЅРґ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
     {
-        printf("\n\nМеню:\n");
-        printf("1. Добавить продукт.\n");
-        printf("2. Удалить продукт.\n");
-        printf("3. Обновить информацию о существующем продукте.\n");
-        printf("4. Вывести на экран информацию обо всех продуктах.\n");
-        printf("5. Вывести на экран только информацию о продуктах с указанными свойствами.\n");
-        printf("6. Выход из программы.\n");
-        printf("Выберите действие (введите только цифру): ");
+        printf("\n\nРњРµРЅСЋ:\n");
+        printf("1. Р”РѕР±Р°РІРёС‚СЊ РїСЂРѕРґСѓРєС‚.\n");
+        printf("2. РЈРґР°Р»РёС‚СЊ РїСЂРѕРґСѓРєС‚.\n");
+        printf("3. РћР±РЅРѕРІРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµРј РїСЂРѕРґСѓРєС‚Рµ.\n");
+        printf("4. Р’С‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ РёРЅС„РѕСЂРјР°С†РёСЋ РѕР±Рѕ РІСЃРµС… РїСЂРѕРґСѓРєС‚Р°С….\n");
+        printf("5. Р’С‹РІРµСЃС‚Рё РЅР° СЌРєСЂР°РЅ С‚РѕР»СЊРєРѕ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РїСЂРѕРґСѓРєС‚Р°С… СЃ СѓРєР°Р·Р°РЅРЅС‹РјРё СЃРІРѕР№СЃС‚РІР°РјРё.\n");
+        printf("6. Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹.\n");
+        printf("Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ (РІРІРµРґРёС‚Рµ С‚РѕР»СЊРєРѕ С†РёС„СЂСѓ): ");
 
         scanf("%d", &command);
 
         switch (command)
         {
         case 1:
-            printf("Введите тип продкукта\n(%d - Новогодняя елка,\n%d - Елочная игрушка,\n%d - Новогодний подарок)\nВаш выбор: ",  CHRISTMAS_TREE_NUM, CHRISTMAS_TREE_DECORATION_NUM, NEW_YEAR_GIFT_NUM);
+            printf("Р’РІРµРґРёС‚Рµ С‚РёРї РїСЂРѕРґРєСѓРєС‚Р°\n(%d - РќРѕРІРѕРіРѕРґРЅСЏСЏ РµР»РєР°,\n%d - Р•Р»РѕС‡РЅР°СЏ РёРіСЂСѓС€РєР°,\n%d - РќРѕРІРѕРіРѕРґРЅРёР№ РїРѕРґР°СЂРѕРє)\nР’Р°С€ РІС‹Р±РѕСЂ: ",  CHRISTMAS_TREE_NUM, CHRISTMAS_TREE_DECORATION_NUM, NEW_YEAR_GIFT_NUM);
             scanf("%d", &type);
             ProductType new_porduct_type = (ProductType)type;
             Product* new_product = create_product(new_porduct_type);
             if (!new_product) break;            
             add_product(&products, &size, new_product);
-            printf("Новый элемент добавлен в массив. Используйте команду 4 для просмотра.");
+            printf("РќРѕРІС‹Р№ СЌР»РµРјРµРЅС‚ РґРѕР±Р°РІР»РµРЅ РІ РјР°СЃСЃРёРІ. РСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРѕРјР°РЅРґСѓ 4 РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°.");
             break;
 
         case 2:
             if (size == 0)
             {
-                printf("Массив пуст.\n");
+                printf("РњР°СЃСЃРёРІ РїСѓСЃС‚.\n");
                 break;
             }
 
-            printf("Введите номер элемента, который необходимо удалить (нумерация с единицы): ");
+            printf("Р’РІРµРґРёС‚Рµ РЅРѕРјРµСЂ СЌР»РµРјРµРЅС‚Р°, РєРѕС‚РѕСЂС‹Р№ РЅРµРѕР±С…РѕРґРёРјРѕ СѓРґР°Р»РёС‚СЊ (РЅСѓРјРµСЂР°С†РёСЏ СЃ РµРґРёРЅРёС†С‹): ");
             scanf("%d", &index);
             remove_product(&products, &size, index - 1);
             break;
@@ -413,20 +413,20 @@ int main() {
         case 3:
             if (size == 0)
             {
-                printf("Массив пуст.\n");
+                printf("РњР°СЃСЃРёРІ РїСѓСЃС‚.\n");
                 break;
             }
 
-            printf("Введите индекс элемента, который необходимо обновить (нумерация с единицы): ");
+            printf("Р’РІРµРґРёС‚Рµ РёРЅРґРµРєСЃ СЌР»РµРјРµРЅС‚Р°, РєРѕС‚РѕСЂС‹Р№ РЅРµРѕР±С…РѕРґРёРјРѕ РѕР±РЅРѕРІРёС‚СЊ (РЅСѓРјРµСЂР°С†РёСЏ СЃ РµРґРёРЅРёС†С‹): ");
             scanf("%d", &index);
             update_product(products, size, index - 1);
-            printf("Элемент обновлен. Используйте команду 4 для просмотра.");
+            printf("Р­Р»РµРјРµРЅС‚ РѕР±РЅРѕРІР»РµРЅ. РСЃРїРѕР»СЊР·СѓР№С‚Рµ РєРѕРјР°РЅРґСѓ 4 РґР»СЏ РїСЂРѕСЃРјРѕС‚СЂР°.");
             break;
 
         case 4:
             if (size == 0)
             {
-                printf("Массив пуст.\n");
+                printf("РњР°СЃСЃРёРІ РїСѓСЃС‚.\n");
                 break;
             }
             print_all_products(products, size);
@@ -435,20 +435,20 @@ int main() {
         case 5:
             if (size == 0)
             {
-                printf("Массив пуст.\n");
+                printf("РњР°СЃСЃРёРІ РїСѓСЃС‚.\n");
                 break;
             }
             print_products_by_mask(products, size);
             break;
 
         case 6:
-            printf("Выход из программы...\n");
+            printf("Р’С‹С…РѕРґ РёР· РїСЂРѕРіСЂР°РјРјС‹...\n");
             free(products);
             products = NULL;
             return 0;
 
         default:
-            printf("Неизвестная команда!\n");
+            printf("РќРµРёР·РІРµСЃС‚РЅР°СЏ РєРѕРјР°РЅРґР°!\n");
         }
     }
 
