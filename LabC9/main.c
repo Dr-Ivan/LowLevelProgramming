@@ -28,7 +28,7 @@ int* all_last_numbers(char* str, int* len){
     char* temp = malloc(string_len*sizeof(char));
     
     if (temp == NULL) {
-		printf("Ошибка! Недостаточно памяти. \n");
+		printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 		exit(1);
 	};
     
@@ -36,7 +36,7 @@ int* all_last_numbers(char* str, int* len){
 	int* nums = (int*) calloc(count, sizeof(int));
 	
 	if (nums == NULL) {
-		printf("Ошибка! Недостаточно памяти. \n");
+		printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 		exit(1);
 	};
 	
@@ -93,14 +93,14 @@ char** short_words(char* str, int k, int* result_len){
     int count = string_len;
     char** result = (char**) calloc((count + 1), sizeof(char*));
     if (result == NULL) {
-    	printf("Ошибка! Недостаточно памяти. \n");
+    	printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
         exit(1);
     };
     int i;
     for (i = 0; i < count; i++){
     	result[i] = (char*) malloc((string_len + 1) * sizeof(char));
     	if (result[i] == NULL) {
-			printf("Ошибка! Недостаточно памяти. \n");
+			printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 			exit(1);
 		}
     	memset(result[i], '\0', (string_len + 1)*sizeof(char));
@@ -147,13 +147,13 @@ char** words(char* str, int* result_len){
     
     char** result = (char**) calloc((count + 1), sizeof(char*));
     if (result == NULL) {
-    	printf("Ошибка! Недостаточно памяти. \n");
+    	printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
         exit(1);
     };
     for (i = 0; i < count; i++){
     	result[i] = (char*) malloc((string_len + 1) * sizeof(char));
     	if (result[i] == NULL) {
-			printf("Ошибка! Недостаточно памяти. \n");
+			printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 			exit(1);
 		}
     	memset(result[i], '\0', (string_len + 1)*sizeof(char));
@@ -220,16 +220,16 @@ int count_substring(char* str, char* s){
 
 
 int main(int argc, char *argv[]) {
-	system("color F0");  // белый цвет консоли
-	system("chcp 1251"); // кодовая страница русского языка
+	system("color F0");  // Р±РµР»С‹Р№ С†РІРµС‚ РєРѕРЅСЃРѕР»Рё
+	system("chcp 1251"); // РєРѕРґРѕРІР°СЏ СЃС‚СЂР°РЅРёС†Р° СЂСѓСЃСЃРєРѕРіРѕ СЏР·С‹РєР°
 	
 	if ((!strcmp(argv[2], "-delete") && argc <= 3) || (!strcmp(argv[2], "-info") && argc <= 3) || argc <= 2) {
-		printf("Ошибка! Введено неверное количество аргументов для данной команды. \n");
+		printf("РћС€РёР±РєР°! Р’РІРµРґРµРЅРѕ РЅРµРІРµСЂРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ Р°СЂРіСѓРјРµРЅС‚РѕРІ РґР»СЏ РґР°РЅРЅРѕР№ РєРѕРјР°РЅРґС‹. \n");
 		return 1;
 	}
 	
 	if (strlen(argv[1]) >= 1000) {
-		printf("Ошибка! Сторка слишком длинная. \n");
+		printf("РћС€РёР±РєР°! РЎС‚РѕСЂРєР° СЃР»РёС€РєРѕРј РґР»РёРЅРЅР°СЏ. \n");
 		return 1;
 	}
 	
@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
 	
 	char* str = (char*) calloc(strlen(argv[1])+1, sizeof(char));
 	if (str == NULL) {
-		printf("Ошибка! Недостаточно памяти. \n");
+		printf("РћС€РёР±РєР°! РќРµРґРѕСЃС‚Р°С‚РѕС‡РЅРѕ РїР°РјСЏС‚Рё. \n");
 		return 1;
 	}
 	
@@ -247,23 +247,23 @@ int main(int argc, char *argv[]) {
 	if(!strcmp(command, "-create")) {
 		int count = 0;
 		int* arr = all_last_numbers(str, &count);
-		printf("Найдено %d чисел, завершающих предолжение. \n", count);
+		printf("РќР°Р№РґРµРЅРѕ %d С‡РёСЃРµР», Р·Р°РІРµСЂС€Р°СЋС‰РёС… РїСЂРµРґРѕР»Р¶РµРЅРёРµ. \n", count);
 		int i = 0;
 		for (;i < count; i++){
-			printf("Число номер %d = %d \n", i+1, arr[i]);
+			printf("Р§РёСЃР»Рѕ РЅРѕРјРµСЂ %d = %d \n", i+1, arr[i]);
 		};
 		free(arr);
 		arr = NULL;
 	} else if (!strcmp(command, "-info")) {
 		char* s = argv[3];
 		int count = count_substring(str, s);
-		printf("Заданное слово %s встречается в сторке %d раз. \n", s, count);
+		printf("Р—Р°РґР°РЅРЅРѕРµ СЃР»РѕРІРѕ %s РІСЃС‚СЂРµС‡Р°РµС‚СЃСЏ РІ СЃС‚РѕСЂРєРµ %d СЂР°Р·. \n", s, count);
 	} else if (!strcmp(command, "-delete")) {
 		int count;
 		int max_len = atoi(argv[3]);
 		char** words = short_words(str, max_len, &count);
 		int i = 0;
-		printf("Все слова длиннее %d букв были удалены. Резульат: \n", max_len);
+		printf("Р’СЃРµ СЃР»РѕРІР° РґР»РёРЅРЅРµРµ %d Р±СѓРєРІ Р±С‹Р»Рё СѓРґР°Р»РµРЅС‹. Р РµР·СѓР»СЊР°С‚: \n", max_len);
 		for(;i < count; i++){
 			printf("%s", words[i]);
 			free(words[i]);
@@ -271,7 +271,7 @@ int main(int argc, char *argv[]) {
 		free(words);
   		words = NULL;
 	}else{
-		printf("Введена несуществующая команда %s. \nДоступные команды: \n\t-info \n\t-create \n\t-delete", command);
+		printf("Р’РІРµРґРµРЅР° РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰Р°СЏ РєРѕРјР°РЅРґР° %s. \nР”РѕСЃС‚СѓРїРЅС‹Рµ РєРѕРјР°РЅРґС‹: \n\t-info \n\t-create \n\t-delete", command);
 	};
 	
 	free(str);
