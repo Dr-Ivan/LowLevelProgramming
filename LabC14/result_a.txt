@@ -1,0 +1,26 @@
+"Text without a command": Неверный формат ввода: отсутствует команда.
+
+
+
+В строке "One. TWO, abcdesd. w123 kjrj qwwwewe qwertyui123456. N12333 mamsmd, 1234. edfa" 
+все слова длиннее 5 букв были удалены. Резульат:
+One. TWO, . w123 kjrj  qwertyui123456. N12333 , 1234. edfa
+
+В строке "There are 12343 symbols 1323. sdfj 34 abc j7dsl. 123 ok 345, 12345. 7kkd 6 , ls 6 27d6, a23b 1234.  52545. Vot 987" 
+найдено 6 чисел, завершающих предолжение.
+Число номер 1 = 1323 
+Число номер 2 = 34 
+Число номер 3 = 12345 
+Число номер 4 = 1234 
+Число номер 5 = 52545 
+Число номер 6 = 987 
+
+
+
+В строке "Text for count text substrings 123text text TeXt txt text! texTTT?" 
+заданное слово "text" встречается в сторке 6 раз. 
+
+"Text with wrong delete": Ошибка: необходимо ввести аргумент К.
+
+"Text with wrong info": Ошибка: необходимо указать искомую подстроку.
+

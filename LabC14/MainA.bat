@@ -1,0 +1,1 @@
+mainA.exe data_a.txt result_a.txt

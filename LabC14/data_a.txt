@@ -1,0 +1,6 @@
+"Text without a command" 
+"One. TWO, abcdesd. w123 kjrj qwwwewe qwertyui123456. N12333 mamsmd, 1234. edfa" -delete 5
+"There are 12343 symbols 1323. sdfj 34 abc j7dsl. 123 ok 345, 12345. 7kkd 6 , ls 6 27d6, a23b 1234.  52545. Vot 987" -create
+"Text for count text substrings 123text text TeXt txt text! texTTT?" -info text
+"Text with wrong delete" -delete
+"Text with wrong info" -info
