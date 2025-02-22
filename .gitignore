@@ -50,3 +50,15 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# ignore all pictures and lab texts
+*.doc
+*.docx
+**.doc
+**.docx
+*.drawio
+**.drawio
+*.png
+**.png
+*.xmcd
+**.xmcd
